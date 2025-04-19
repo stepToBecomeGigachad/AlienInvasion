@@ -47,6 +47,22 @@ class AlienInvasion:
 
             self.update_screen()
 
+    def show_instructions(self):
+        font = pygame.font.SysFont(None, 28)
+        instructions = [
+            "Intructions:",
+            "- Use <- or -> to move the ship",
+            "- Use SPACE to fire bullets",
+            "- Use Q to quit the game",
+        ]
+
+        for i, line in enumerate(instructions):
+            text_image = font.render(line, True, (0, 0, 0), self.settings.bg_color)
+            text_rect = text_image.get_rect()
+            text_rect.centerx = self.screen.get_rect().centerx
+            text_rect.top = 400 + i * 30
+            self.screen.blit(text_image, text_rect)
+
     def check_events(self):
         """Respond to keypresses and mouse events."""
         for event in pygame.event.get():
@@ -263,6 +279,7 @@ class AlienInvasion:
         # Draw the play button if the game is inactive.
         if not self.stats.game_active:
             self.play_button.draw_button()
+            self.show_instructions()
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()

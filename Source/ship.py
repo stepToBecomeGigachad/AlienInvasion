@@ -1,4 +1,5 @@
 import pygame
+import os
 from pygame.sprite import Sprite
 
 class Ship(Sprite):
@@ -9,7 +10,11 @@ class Ship(Sprite):
         self.ai_settings = ai_settings
 
         # Load the ship image, and get its rect.
-        self.image = pygame.image.load(r'D:\AlienInvasion\images\ship.bmp')
+        #self.image = pygame.image.load(r'D:\AlienInvasion\images\ship.bmp')
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        image_path = os.path.join(base_path, "images", "ship.bmp")
+
+        self.image = pygame.image.load(image_path)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
